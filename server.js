@@ -1,9 +1,10 @@
 var express = require('express'),
 		parser = require('body-parser'),
 		hbs = require('hbs'),
-		mongoose = require('mongoose');
-
-var app = express();
+		mongoose = require('mongoose'),
+		User = require('./models/user'),
+		Event = require('./models/event'),
+		app = express();
 
 //configure body-parser
 app.use(parser.urlencoded({ extended: true }));
@@ -15,6 +16,27 @@ app.use(express.static('__dirname' + '/public'));
 app.set('view engine', 'hbs');
 //connect to mongodb
 mongoose.connect("mongodb://localhost/weekend_planner");
+
+// ALL API ROUTES
+
+//GET EVENTS
+app.get('/api/events', function(req, res){
+	Event.find(function(err, allInterest){
+		if(err) {
+			res.status(500).json({ error: err.message })
+		} else {
+			res.json(allInterest);
+			}
+	});
+});
+
+//CREATE EVENTS
+
+//SHOW EVENTS
+
+//UPDATE EVENTS
+
+//DELETE EVENTS
 
 
 app.get('*', function(req, res){
@@ -28,5 +50,3 @@ app.listen(port, function(err){
 		console.log(err);
 	} else console.log('server started at:', port);
 });
-
-
