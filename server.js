@@ -31,6 +31,10 @@ app.get('/api/events', function(req, res){
 });
 
 //CREATE EVENTS
+app.post('api/events', function(req,res){
+	var newEvent = new Event(req.body);
+
+});
 
 //SHOW EVENTS
 
