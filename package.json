@@ -1,0 +1,26 @@
+{
+  "name": "weekend_planner",
+  "version": "1.0.0",
+  "description": "Helps you plan your weekend based on your interest",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tnsherpa1/weekend-planner.git"
+  },
+  "author": "Tashi Sherpa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tnsherpa1/weekend-planner/issues"
+  },
+  "homepage": "https://github.com/tnsherpa1/weekend-planner#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "hbs": "^4.0.0",
+    "mongoose": "^4.4.10"
+  }
+}
