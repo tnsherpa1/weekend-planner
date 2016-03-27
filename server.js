@@ -33,10 +33,26 @@ app.get('/api/events', function(req, res){
 //CREATE EVENTS
 app.post('api/events', function(req,res){
 	var newEvent = new Event(req.body);
-
+	newEvent.save(function(err, savedEvent){
+		if(err){
+			res.status(500).json({error: err.message})
+		} else {
+			res.json(savedEvent);
+		}
+	});
 });
 
 //SHOW EVENTS
+app.get('api/events/:id', function(req, res){
+	var id = req.params.id;
+	Event.findById({_id: id}, function(err, foundEvent){
+		if (err) {
+			res.status(500).json({error: err.message})
+		} else {
+			res.json(foundEvent);
+		}
+	})
+})
 
 //UPDATE EVENTS
 
