@@ -9,11 +9,11 @@ var router = express.Router();
 
 //GET EVENTS
 router.get('/events', function(req, res){
-	Event.find(function(err, allInterest){
+	Event.find(function(err, allWod){
 		if(err) {
 			res.status(500).json({ error: err.message })
 		} else {
-    res.json({activities: activities});
+    res.json({allWod});
 			// res.json(allInterest);
 			}
 	});

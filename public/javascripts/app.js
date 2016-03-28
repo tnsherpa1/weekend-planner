@@ -1,4 +1,4 @@
-var app = angular.module('weekendApp', ['ui.router', 'ngResource']);
+var app = angular.module('wodApp', ['ui.router', 'ngResource']);
 app.config(config);
 app.factory('Event', EventFactory);
 app.controller('HomeController', HomeController);
@@ -28,7 +28,7 @@ $stateProvider
 EventFactory.$inject = ['$resource'];
 function EventFactory($resource) {
   // $resource gives you built in CRUDy functions like: save, query, remove, update
-  return $resource('api/events/:id', { id: '@_id' },
+  return $resource('/api/events/:id', { id: '@_id' },
   {
     'update': { method:'PUT' }
   });
@@ -39,6 +39,18 @@ function EventFactory($resource) {
 HomeController.$inject = ['Event'];
 function HomeController(Event) {
 	console.log("controller called!")
-	vm = this;
-	vm.test = "Welcome to my test page";
+	var vm = this;
+  vm.events = Event.query();
+	console.log('hjkgh',vm.events);
+  vm.event = {};
+  console.log('hey',vm);
+	vm.addEvent = function(){
+		console.log("adding...");
+		var newEvent = Event.save(vm.event);
+    console.log("neweventshowinghere", newEvent);
+   // console.log('before',vm.todo);
+    vm.event = {};
+    // console.log('after',vm.todo);
+    vm.events.unshift(newEvent);
+	}
 }
