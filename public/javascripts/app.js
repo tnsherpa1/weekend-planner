@@ -43,14 +43,11 @@ function HomeController(Event) {
   vm.events = Event.query();
   vm.event = {};
   console.log('hey',vm);
-	debugger;
 	vm.addEvent = function(){
 		console.log("adding...");
 		var newEvent = Event.save(vm.event);
     console.log("neweventshowinghere", newEvent);
-   // console.log('before',vm.todo);
-    vm.event = {};
-    // console.log('after',vm.todo);
-    vm.events.unshift(newEvent);
+		vm.event = {};
+		vm.events.unshift(newEvent);
 	}
 }

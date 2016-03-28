@@ -14,7 +14,6 @@ router.get('/events', function(req, res){
 			res.status(500).json({ error: err.message })
 		} else {
     res.json(allWod);
-			// res.json(allInterest);
 			}
 	});
 });
@@ -22,6 +21,7 @@ router.get('/events', function(req, res){
 //CREATE EVENTS
 router.post('/events', function(req,res){
 	var newEvent = new Event(req.body);
+	console.log(newEvent);
 	newEvent.save(function(err, savedEvent){
 		if(err){
 			res.status(500).json({error: err.message})
