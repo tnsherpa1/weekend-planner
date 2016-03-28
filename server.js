@@ -4,7 +4,7 @@ var express = require('express'),
 		mongoose = require('mongoose'),
 		User = require('./models/user'),
 		Event = require('./models/event'),
-		Router = require('./routes')
+		router = require('./routes')
 		app = express();
 
 //configure body-parser
@@ -12,7 +12,7 @@ app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 //serve static files from public folder
 app.use(express.static('__dirname' + '/public'));
-app.use('/api', Router);
+app.use('/api', router);
 
 
 
