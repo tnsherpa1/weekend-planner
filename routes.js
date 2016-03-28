@@ -2,17 +2,19 @@
 var express = require('express');
 var User = require('./models/user');
 var Event = require('./models/event');
+var activities = require('./models/sample.json')
 var router = express.Router();
 
 // ALL API ROUTES
 
 //GET EVENTS
 router.get('/events', function(req, res){
-	Event.find({},function(err, allInterest){
+	Event.find(function(err, allInterest){
 		if(err) {
 			res.status(500).json({ error: err.message })
 		} else {
-			res.json(allInterest);
+    res.json({activities: activities});
+			// res.json(allInterest);
 			}
 	});
 });
