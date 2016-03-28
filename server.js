@@ -4,13 +4,17 @@ var express = require('express'),
 		mongoose = require('mongoose'),
 		User = require('./models/user'),
 		Event = require('./models/event'),
-		app = express();
+		app = express(),
+		router = express.Router();
 
 //configure body-parser
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 //serve static files from public folder
 app.use(express.static('__dirname' + '/public'));
+
+app.use('/api', router);
+
 
 //set view engine
 app.set('view engine', 'hbs');
@@ -20,8 +24,8 @@ mongoose.connect("mongodb://localhost/weekend_planner");
 // ALL API ROUTES
 
 //GET EVENTS
-app.get('/api/events', function(req, res){
-	Event.find(function(err, allInterest){
+router.get('/events', function(req, res){
+	Event.find({},function(err, allInterest){
 		if(err) {
 			res.status(500).json({ error: err.message })
 		} else {
@@ -31,7 +35,7 @@ app.get('/api/events', function(req, res){
 });
 
 //CREATE EVENTS
-app.post('api/events', function(req,res){
+router.post('/events', function(req,res){
 	var newEvent = new Event(req.body);
 	newEvent.save(function(err, savedEvent){
 		if(err){
@@ -43,7 +47,7 @@ app.post('api/events', function(req,res){
 });
 
 //SHOW EVENTS
-app.get('api/events/:id', function(req, res){
+router.get('/events/:id', function(req, res){
 	var id = req.params.id;
 	Event.findById({_id: id}, function(err, foundEvent){
 		if (err) {
@@ -55,7 +59,7 @@ app.get('api/events/:id', function(req, res){
 })
 
 //UPDATE EVENTS
-app.put('api/events/:id', function(req,res){
+router.put('/events/:id', function(req,res){
 	var id = req.params.id;
 	Event.findById({_id: id}, function(err, updateEvent){
 		if (err) {
@@ -74,7 +78,7 @@ app.put('api/events/:id', function(req,res){
 });
 
 //DELETE EVENTS
-app.delete('api/events/:id', function(req,res){
+router.delete('/events/:id', function(req,res){
 	var id = req.params.id;
 	Event.findOneandRemove({_id: id}, function(err, removedEvent){
 		if (err){

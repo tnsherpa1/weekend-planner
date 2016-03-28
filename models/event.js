@@ -1,9 +1,7 @@
 var mongoose = require('mongoose');
 
 var eventSchema = new mongoose.Schema({
-  interest: string,
-
-
+  interest: String
 });
 
 var Event = mongoose.model('Event', eventSchema);
