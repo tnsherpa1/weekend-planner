@@ -1,9 +1,17 @@
 <div class="row">
 	<!-- <h1>Weekend Planner</h1> -->
 	<form class="form-group">
-		<label for="title">Add a Workout</label>
+		<label for="title" style="color: lightskyblue">Add a Workout</label>
 		<input class="form-control" type="text" name="title" ng-model="home.title" placeholder="Name" autofocus>
 		<textarea class="form-control" rows="5" ng-model="home.description" placeholder="Description"></textarea>
-	<button type="submit" class="btn btn-sm btn-default" ng-click="home.addEvent()">+</button>
+	<button type="submit" class="btn btn-sm btn-default" ng-click="Home.addEvent()">+</button>
 	</form>
+	<div id="event_show">
+		<ul>
+			<li ng-repeat="event in home.events">
+			<a href="">{{event.title}}</a>
+			<a href="">{{event.description}}</a>
+			</li>
+		</ul>
+	</div>
 </div>

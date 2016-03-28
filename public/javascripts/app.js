@@ -28,7 +28,7 @@ $stateProvider
 EventFactory.$inject = ['$resource'];
 function EventFactory($resource) {
   // $resource gives you built in CRUDy functions like: save, query, remove, update
-  return $resource('/api/events/:id', { id: '@_id' },
+  return $resource('../api/events/:id', { id: '@_id' },
   {
     'update': { method:'PUT' }
   });
@@ -41,9 +41,9 @@ function HomeController(Event) {
 	console.log("controller called!")
 	var vm = this;
   vm.events = Event.query();
-	console.log('hjkgh',vm.events);
   vm.event = {};
   console.log('hey',vm);
+	debugger;
 	vm.addEvent = function(){
 		console.log("adding...");
 		var newEvent = Event.save(vm.event);

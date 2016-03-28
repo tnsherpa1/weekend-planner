@@ -13,7 +13,7 @@ router.get('/events', function(req, res){
 		if(err) {
 			res.status(500).json({ error: err.message })
 		} else {
-    res.json({allWod});
+    res.json(allWod);
 			// res.json(allInterest);
 			}
 	});
