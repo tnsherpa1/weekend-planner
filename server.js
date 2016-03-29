@@ -3,7 +3,7 @@ var express = require('express'),
 		hbs = require('hbs'),
 		mongoose = require('mongoose'),
 		User = require('./models/user'),
-		Event = require('./models/event'),
+		Wod = require('./models/wod'),
 		router = require('./routes'),
 		app = express();
 
@@ -17,7 +17,7 @@ app.use('/api', router);
 //set view engine
 app.set('view engine', 'hbs');
 //connect to mongodb
-mongoose.connect("mongodb://localhost/weekend_planner");
+mongoose.connect("mongodb://localhost/workout_planner");
 
 
 

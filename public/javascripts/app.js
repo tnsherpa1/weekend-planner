@@ -1,6 +1,6 @@
 var app = angular.module('wodApp', ['ui.router', 'ngResource']);
 app.config(config);
-app.factory('Event', EventFactory);
+app.factory('Wod', WodFactory);
 app.controller('HomeController', HomeController);
 
 config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
@@ -25,10 +25,10 @@ $stateProvider
 }
 
 // FACTORY
-EventFactory.$inject = ['$resource'];
-function EventFactory($resource) {
+WodFactory.$inject = ['$resource'];
+function WodFactory($resource) {
   // $resource gives you built in CRUDy functions like: save, query, remove, update
-  return $resource('../api/events/:id', { id: '@_id' },
+  return $resource('../api/Wods/:id', { id: '@_id' },
   {
     'update': { method:'PUT' }
   });
@@ -36,26 +36,26 @@ function EventFactory($resource) {
 }
 
 // CONTROLLER
-HomeController.$inject = ['Event'];
-function HomeController(Event) {
+HomeController.$inject = ['Wod'];
+function HomeController(Wod) {
 	console.log("controller called!")
 	var vm = this;
-  vm.events = Event.query();
-  vm.event = {};
+  vm.Wods = Wod.query();
+  vm.Wod = {};
   console.log('hey',vm);
-	vm.addEvent = function(){
+	vm.addWod = function(){
 		console.log("adding...");
-		var newEvent = Event.save(vm.event);
-    console.log("neweventshowinghere", newEvent);
-		vm.event = {};
-		vm.events.unshift(newEvent);
+		var newWod = Wod.save(vm.Wod);
+    console.log("newWodshowinghere", newWod);
+		vm.Wod = {};
+		vm.Wods.unshift(newWod);
 	}
-	vm.removeEvent = function(event){
+	vm.removeWod = function(Wod){
 		console.log("removing...");
-		Event.remove({ id: event._id });
-		var eventIndex = vm.events.indexOf(event);
-		console.log(eventIndex);
-		vm.events.splice(eventIndex, 1);
+		Wod.remove({ id: Wod._id });
+		var WodIndex = vm.Wods.indexOf(Wod);
+		console.log(WodIndex);
+		vm.Wods.splice(WodIndex, 1);
 
 	}
 }

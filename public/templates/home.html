@@ -1,18 +1,18 @@
 <div class="row">
 	<!-- <h1>Weekend Planner</h1> -->
-	<form class="form-group" ng-submit="Home.addEvent()">
+	<form class="form-group" ng-submit="Home.addWod()">
 		<label for="title">Add a Workout</label>
-		<input class="form-control" type="text" name="title" ng-model="Home.event.title" placeholder="Name" autofocus>
-		<textarea class="form-control" rows="5" ng-model="Home.event.description" placeholder="Description"></textarea>
+		<input class="form-control" type="text" name="title" ng-model="Home.wod.title" placeholder="Name" autofocus>
+		<textarea class="form-control" rows="5" ng-model="Home.wod.description" placeholder="Description"></textarea>
 		<button type="submit" class="btn btn-sm btn-default">+</button>
 	</form>
-	<div id="event_show">
+	<div id="wod_show">
 		<ul>
-			<li ng-repeat="event in Home.events">
-				<a href="">{{event.title}}</a>
-				<a href="">{{event.description}}</a>
-				<span ng-click="Home.removeEvent(event)" class="glyphicon glyphicon-trash"></span>&nbsp
-				<span ng-click="Home.updateEvent(event)" class="glyphicon glyphicon-pencil"></span>
+			<li ng-repeat="wod in Home.wods">
+				<a href="">{{wod.title}}</a>
+				<a href="">{{wod.description}}</a>
+				<span ng-click="Home.removeWod(wod)" class="glyphicon glyphicon-trash"></span>&nbsp
+				<span ng-click="Home.updateWod(wod)" class="glyphicon glyphicon-pencil"></span>
 			</li>
 		</ul>
 	</div>

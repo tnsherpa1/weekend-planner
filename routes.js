@@ -1,15 +1,14 @@
 'use strict';
 var express = require('express');
 var User = require('./models/user');
-var Event = require('./models/event');
-var activities = require('./models/sample.json')
+var Wod = require('./models/wod');
 var router = express.Router();
 
 // ALL API ROUTES
 
-//GET EVENTS
-router.get('/events', function(req, res){
-	Event.find(function(err, allWod){
+//GET WODS
+router.get('/wods', function(req, res){
+	Wod.find(function(err, allWod){
 		if(err) {
 			res.status(500).json({ error: err.message })
 		} else {
@@ -18,58 +17,58 @@ router.get('/events', function(req, res){
 	});
 });
 
-//CREATE EVENTS
-router.post('/events', function(req,res){
-	var newEvent = new Event(req.body);
-	console.log(newEvent);
-	newEvent.save(function(err, savedEvent){
+//CREATE WODS
+router.post('/wods', function(req,res){
+	var newWod = new Wod(req.body);
+	console.log(newWod);
+	newWod.save(function(err, savedWod){
 		if(err){
 			res.status(500).json({error: err.message})
 		} else {
-			res.json(savedEvent);
+			res.json(savedWod);
 		}
 	});
 });
 
-//SHOW EVENTS
-router.get('/events/:id', function(req, res){
+//SHOW WODS
+router.get('/wods/:id', function(req, res){
 	var id = req.params.id;
-	Event.findById({_id: id}, function(err, foundEvent){
+	Wod.findById({_id: id}, function(err, foundWod){
 		if (err) {
 			res.status(500).json({error: err.message})
 		} else {
-			res.json(foundEvent);
+			res.json(foundWod);
 		}
 	})
 })
 
-//UPDATE EVENTS
-router.put('/events/:id', function(req,res){
+//UPDATE WODS
+router.put('/wods/:id', function(req,res){
 	var id = req.params.id;
-	Event.findById({_id: id}, function(err, updateEvent){
+	Wod.findById({_id: id}, function(err, updateWod){
 		if (err) {
 			res.status(500).json(err);
 		} else {
-			updateEvent.title = req.body.title;
-			Event.save(function(err, savedEvent){
+			updateWod.title = req.body.title;
+			Wod.save(function(err, savedWod){
 				if(err){
 					res.status(500).json({error: err.message})
 				} else {
-					res.json(savedEvent);
+					res.json(savedWod);
 				}
 			});
 		}
 	})
 });
 
-//DELETE EVENTS
-router.delete('/events/:id', function(req,res){
+//DELETE WODS
+router.delete('/wods/:id', function(req,res){
 	var id = req.params.id;
-	Event.findOneAndRemove({_id: id}, function(err, removedEvent){
+	Wod.findOneAndRemove({_id: id}, function(err, removedWod){
 		if (err){
 			res.status(500).json({error: err.message});
 		} else {
-			res.json(removedEvent)
+			res.json(removedWod)
 		}
 	})
 })
