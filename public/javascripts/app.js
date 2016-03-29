@@ -50,12 +50,12 @@ function HomeController(Wod) {
 		vm.wod = {};
 		vm.wods.unshift(newWod);
 	}
-	vm.removeWod = function(Wod){
+	vm.removeWod = function(wod){
 		console.log("removing...");
-		Wod.remove({ id: Wod._id });
-		var WodIndex = vm.Wods.indexOf(Wod);
+		Wod.remove({ id: wod._id });
+		var WodIndex = vm.wods.indexOf(wod);
 		console.log(WodIndex);
-		vm.Wods.splice(WodIndex, 1);
+		vm.wods.splice(WodIndex, 1);
 
 	}
 }
