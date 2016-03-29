@@ -4,16 +4,19 @@
 		<label for="title">Add a Workout</label>
 		<input class="form-control" type="text" name="title" ng-model="Home.wod.title" placeholder="Name" autofocus>
 		<textarea class="form-control" rows="5" ng-model="Home.wod.description" placeholder="Description"></textarea>
-		<button type="submit" class="btn btn-sm btn-default">+</button>
+		<button type="submit" class="btn btn-lg btn-primary btn-block">Add a Workout</button>
 	</form>
 	<div id="wod_show">
 		<ul>
 			<li ng-repeat="wod in Home.wods">
 				<a href="">{{wod.title}}</a>
 				<a href="">{{wod.description}}</a>
-				<span ng-click="Home.removeWod(wod)" class="glyphicon glyphicon-trash"></span>&nbsp
-				<span ng-click="Home.updateWod(wod)" class="glyphicon glyphicon-pencil"></span>
+				<span ng-click="Home.removeWod(wod)" class="glyphicon glyphicon-trash pull-right"></span>
+				<span ng-click="Home.updateWod(wod)" class="glyphicon glyphicon-pencil pull-right"></span>
 			</li>
 		</ul>
 	</div>
+	<hr>
+	<button class="btn btn-lg btn-danger btn-block">Generate Workout</button>
+	<hr>
 </div>
