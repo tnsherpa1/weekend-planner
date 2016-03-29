@@ -65,7 +65,7 @@ router.put('/events/:id', function(req,res){
 //DELETE EVENTS
 router.delete('/events/:id', function(req,res){
 	var id = req.params.id;
-	Event.findOneandRemove({_id: id}, function(err, removedEvent){
+	Event.findOneAndRemove({_id: id}, function(err, removedEvent){
 		if (err){
 			res.status(500).json({error: err.message});
 		} else {

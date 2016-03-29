@@ -11,6 +11,8 @@
 			<li ng-repeat="event in Home.events">
 				<a href="">{{event.title}}</a>
 				<a href="">{{event.description}}</a>
+				<span ng-click="Home.removeEvent(event)" class="glyphicon glyphicon-trash"></span>&nbsp
+				<span ng-click="Home.updateEvent(event)" class="glyphicon glyphicon-pencil"></span>
 			</li>
 		</ul>
 	</div>

@@ -50,4 +50,12 @@ function HomeController(Event) {
 		vm.event = {};
 		vm.events.unshift(newEvent);
 	}
+	vm.removeEvent = function(event){
+		console.log("removing...");
+		Event.remove({ id: event._id });
+		var eventIndex = vm.events.indexOf(event);
+		console.log(eventIndex);
+		vm.events.splice(eventIndex, 1);
+
+	}
 }
