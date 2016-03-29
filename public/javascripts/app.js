@@ -40,15 +40,15 @@ HomeController.$inject = ['Wod'];
 function HomeController(Wod) {
 	console.log("controller called!")
 	var vm = this;
-  vm.Wods = Wod.query();
-  vm.Wod = {};
+  vm.wods = Wod.query();
+  vm.wod = {};
   console.log('hey',vm);
 	vm.addWod = function(){
 		console.log("adding...");
-		var newWod = Wod.save(vm.Wod);
+		var newWod = Wod.save(vm.wod);
     console.log("newWodshowinghere", newWod);
-		vm.Wod = {};
-		vm.Wods.unshift(newWod);
+		vm.wod = {};
+		vm.wods.unshift(newWod);
 	}
 	vm.removeWod = function(Wod){
 		console.log("removing...");
